@@ -9,3 +9,5 @@ def contato(request):
     return render(request,'contato.html')
 def ajuda(request):
     return render(request,'ajuda.html')
+def local(request):
+    return render(request,'local.html')
