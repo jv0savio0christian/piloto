@@ -27,5 +27,7 @@ urlpatterns = [
     path('local',views.local,name='local'),
     path('exibiritem/<int:id>',views.exibiritem,name='exibiritem'),
     path('perfil/<str:nome>',views.perfil,name='perfil'),
-    path('diadasemana/<int:dia>',views.semana,name='semana')
+    path('diadasemana/<int:dia>',views.semana,name='semana'),
+    path('dados/',views.dados,name='dados'),
+    path('form/',views.form,name='form')
 ]
