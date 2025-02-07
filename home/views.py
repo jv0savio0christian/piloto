@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import redirect, render
 from django.http import HttpResponse
 varia = {}
 # Create your views here.
@@ -63,3 +63,30 @@ def form(request):
         return render(request,'dados.html',context)
     else: # method GET, mostra o formulário vazio
         return render(request,'form.html')
+LISTA_ALUNOS = [
+    {"nome": "João Silva",'data_nascimento': '03/10/2009', "matricula": "202301", "curso": "Técnico em Informática", "turma": "208"},
+    {"nome": "Maria Oliveira", 'data_nascimento': '05/02/2008', "matricula": "202302", "curso": "Técnico em Informática", "turma": "208"},
+    {"nome": "Carlos Souza", 'data_nascimento': '20/12/2009', "matricula": "202303", "curso": "Técnico em Informática", "turma": "208"},
+]
+def listar_aluno(request):
+    context = {
+        'lista': LISTA_ALUNOS,
+    }
+    return render(request,'listar_aluno.html',context)
+def editar_aluno(request,indice):
+    aluno=LISTA_ALUNOS[indice]
+    if request.method == "POST":
+        aluno['nome'] = request.POST.get('nome')
+        aluno['matrícula'] = request.POST.get('matrícula')
+        aluno['data_nascimento'] = request.POST.get('data_nascimento')
+        aluno['curso'] = request.POST.get('curso')
+        aluno['turma'] = request.POST.get('turma')
+        return redirect('listar_aluno')
+    context={
+        'aluno':aluno,
+        'indice':indice
+}
+    return render(request,'form_aluno.html',context)
+def remover_aluno(request,indice):
+    del LISTA_ALUNOS[indice]
+    return redirect('listar_aluno')
