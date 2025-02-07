@@ -29,5 +29,8 @@ urlpatterns = [
     path('perfil/<str:nome>',views.perfil,name='perfil'),
     path('diadasemana/<int:dia>',views.semana,name='semana'),
     path('dados/',views.dados,name='dados'),
-    path('form/',views.form,name='form')
+    path('form/',views.form,name='form'),
+    path('alunos/listar/',views.listar_aluno,name='listar_aluno'),
+    path('alunos/editar/<int:indice>',views.editar_aluno,name='editar_aluno'),
+    path('alunos/excluir/<int:indice>',views.remover_aluno,name='remover_aluno')
 ]
