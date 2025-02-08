@@ -87,6 +87,29 @@ def editar_aluno(request,indice):
         'indice':indice
 }
     return render(request,'form_aluno.html',context)
+
+
 def remover_aluno(request,indice):
     del LISTA_ALUNOS[indice]
     return redirect('listar_aluno')
+
+def cadastrar_aluno(request):
+    if request.method=="POST":
+        nome=request.POST.get('nome')
+        matricula=request.POST.get('matricula')
+        curso=request.POST.get('curso')
+        turma=request.POST.get('turma')
+        data_nascimento=request.POST.get('data_nascimento')
+
+        novo_aluno= {
+            "nome":nome,
+            "matricula":matricula,
+            "curso":curso,
+            "turma":turma,
+            "data_nascimento":data_nascimento
+        }
+        LISTA_ALUNOS.append(novo_aluno)
+        return redirect('listar_aluno')
+    
+    return render(request,'form_aluno.html')
+
