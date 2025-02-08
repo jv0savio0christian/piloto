@@ -87,6 +87,7 @@ def editar_aluno(request,indice):
         'indice':indice
 }
     return render(request,'form_aluno.html',context)
+<<<<<<< HEAD
 
 
 def remover_aluno(request,indice):
@@ -113,3 +114,8 @@ def cadastrar_aluno(request):
     
     return render(request,'form_aluno.html')
 
+=======
+def remover_aluno(request,indice):
+    del LISTA_ALUNOS[indice]
+    return redirect('listar_aluno')
+>>>>>>> ba7b1bbfd489c8c14720322fa806699cc557c12f
